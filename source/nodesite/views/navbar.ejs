@@ -1,0 +1,44 @@
+<% var categories = data.categories.children_data; %>
+<%
+    function renderCategory(category)
+    {
+        var li = '<li><a class="categories-name" href="#">' +category.name+ '</a>';
+        if(category.children_data.length != 0)
+        {
+            if(category.level == 2)
+            {
+                li+= '<ul class="sub-menu">'
+            }
+            else
+            {
+                li+= '<ul class="super-sub-menu">'
+            }
+            for (var i=0; i < category.children_data.length; i++){
+                li += renderCategory(category.children_data[i]);
+            }
+            li+= '</ul>';
+        }
+        li+= '</li>';
+        return li;
+    }
+%>
+<div class="header-container">
+    <div class="header-top">
+        <% if(user){ %>
+            <a id="logout-link" href="/account/logout">Logout</a>
+
+        <% } else { %>
+            <a id="logout-link" href="/admin">Admin</a>
+            <a id="logout-link" href="/account/login">Login</a>
+        <% } %>
+    </div>
+    <nav>
+        <ul class="main-menu">
+            <% for (var i=0; i < categories.length; i++) { %>
+                <% if(categories[i].is_active == true){ %>
+                    <%- renderCategory(categories[i]); %>
+                <% } %>
+            <% } %>
+        </ul>
+    </nav>
+</div>

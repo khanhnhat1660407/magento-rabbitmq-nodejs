@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="SM\RabbitMQ\Model\CreateOrderRequestHandler">
+        <plugin name="Create_Order_Request_Handler_Plugin"
+                type="SM\RabbitMQ\Plugin\CreateOrderPlugin"/>
+    </type>
+</config>

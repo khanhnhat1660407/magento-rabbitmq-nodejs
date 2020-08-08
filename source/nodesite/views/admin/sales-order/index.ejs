@@ -1,0 +1,110 @@
+
+<%- include('../admin-header'); -%>
+<style>
+    .bottom {
+    position: relative;
+}
+.dataTables_paginate.paging_simple_numbers {
+    width: 100%;
+    text-align: center;
+}
+
+.pagination {
+    justify-content: center !important;
+}
+
+#sales-order-table {
+    color: black;
+}
+
+#sales-order-table_length {
+    display: flex;
+    position: absolute;
+    z-index: 10;
+}
+#sales-order-table_length > label {
+    display: flex;
+    width: fit-content;
+    line-height: 30px;
+}
+#sales-order-table_length > label > select {
+    margin: 0 10px;
+}
+.badge {
+
+    padding: 0.3rem 0.6rem;
+}
+.dataTables_processing {
+    margin: 0 !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100%;
+    box-shadow: none;
+    background-color: #80808026;
+    border: none;
+    z-index: 10;
+    height: 100%;
+    position: absolute;
+}
+#spiner-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    background-color: rgba(196, 196, 196, 0.274);
+}
+.table-responsive-md {
+    display: table;
+}
+.toast-sync-order-result{
+    min-width: 20rem;
+}
+.paginate_button.page-item:not(.previous):not(.next) > .page-link{
+    width: 30px;
+    height: 30px;
+}
+#sales-order-table_previous > .page-link:hover, 
+#sales-order-table_next > .page-link:hover{
+    border-radius: 5px !important;
+}
+</style>
+<div class="row">
+    <div class="col-12 text-right">
+        <button id="syncOrderBtn" type="button" class="btn btn-success" style="height: 60px; width: 180px; justify-content: center; align-items: center; display: flex; float: right;">
+            <i class='bx bx-sync' style="font-size: 2rem;"></i>
+            <span style="font-size: 1rem; font-weight: bold;">SYNC ORDER</span>
+        </button>
+        <button id="generateOrderBtn" type="button" class="btn btn-warning mr-2" style="height: 60px; width: 180px; justify-content: center; align-items: center; display: flex; float: right;">
+            <i class='bx bxs-bot mr-1' style="font-size: 2rem;"></i>
+            <span style="font-size: 1rem; font-weight: bold;">GENERATE</span>
+        </button>
+    </div>
+</div>
+<div class="main-table mt-3">
+    <table class="table table-bordered table-striped sales-order-table table-responsive-sm table-responsive-md"
+           id="sales-order-table"
+           cellspacing="0"
+           width="100%"
+           style="width: 100% !important;">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Order ID</th>
+                <th scope="col">User</th>
+                <th scope="col">Email</th>
+                <th scope="col">Currency</th>
+                <th scope="col">Order Status</th>
+                <th scope="col">Create At</th>
+                <th scope="col">Synced</th>
+                <th scope="col">Sync Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<%- include('../admin-footer'); -%>

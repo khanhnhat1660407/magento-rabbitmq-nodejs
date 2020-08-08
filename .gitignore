@@ -1,0 +1,5 @@
+auth.json
+README.md
+/db_data
+/redis_data
+/rabbitmq/data/

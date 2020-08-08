@@ -1,0 +1,33 @@
+
+<%- include('header'); -%>
+<% var block_promotion = data.block_promotion; %>
+<% if (block_promotion) { %>
+    <div class="promotion-products-block">
+        <div class="block-title">
+            <h2>Promotion products</h2>
+        </div>
+        <div class="promotion-product-list">
+            <% for (var i = 0; i < block_promotion.length; i++) { %>
+                <div class="card product-container" >
+                        <div class="product-image-container">
+                            <img class="product-image" src="<%- block_promotion[i].small_image %>" alt="<%- block_promotion[i].name %>">
+                        </div>
+                        <div class="card-body product-detail">
+                        <p class="card-title product-name"><%- block_promotion[i].name %></p>
+                        <div class="price-container">
+                            <div class="old-price">
+                                <p class="price"><%- block_promotion[i].price %> <span class="store-currency">USD</span></p>
+                            </div>
+                            <div class="special-price"><p class="price"><%- block_promotion[i].special_price %> <span class="store-currency">USD</span></p></div>
+                        </div>
+                        <div class="action">
+                            <button type="button" id="add-to-card-btn" class="add-to-card-btn">ADD TO CARD</button>
+                        </div>
+                        </div>
+                    </div>
+                
+            <% } %>
+        </div>
+    </div>
+<% } %>
+<%- include('footer'); -%>

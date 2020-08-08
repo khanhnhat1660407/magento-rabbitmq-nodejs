@@ -1,0 +1,35 @@
+{
+  "name": "site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.5.6",
+    "axios": "^0.19.1",
+    "body-parser": "^1.19.0",
+    "connect-redis": "^4.0.4",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "express-promise-router": "^3.0.3",
+    "express-session": "^1.17.0",
+    "node-cron": "^2.0.3",
+    "node-html-parser": "^1.1.18",
+    "nodemailer": "^6.4.2",
+    "nodemon": "^2.0.2",
+    "pg": "^7.18.1",
+    "pg-hstore": "^2.3.3",
+    "promise": "^8.0.3",
+    "redis": "^3.0.2",
+    "rsmq": "^0.12.0",
+    "rsmq-promise": "^1.0.4",
+    "rsmq-worker": "^0.5.2",
+    "sequelize": "^5.21.4",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0"
+  }
+}

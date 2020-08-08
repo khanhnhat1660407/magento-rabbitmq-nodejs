@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title><%- pageTitle %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="MyraStudio" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/public/assets/images/favicon.ico">
+
+    <!-- App css -->
+    <link href="/public/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/assets/css/theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/assets/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <% if (pageCode == 'sales-order') { %>
+        <link href="/public/assets/css/admin/sales-order.css"/>
+    <% } %>
+</head>
+
+
+<body>
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+    <%- include('admin-navbar'); -%>
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <%- include('admin-left-bar'); -%>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Admin</a></li>
+                            <li class="breadcrumb-item active"><%- pageTitle %></li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->

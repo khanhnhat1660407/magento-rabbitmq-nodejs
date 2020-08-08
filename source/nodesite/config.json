@@ -1,0 +1,37 @@
+{
+  "server": {
+    "DEFAULT_PORT": 9000,
+    "host": "http://localhost:9000"
+  },
+
+  "redis": {
+    "SESSION_SECRET": "khanhnhat"
+  },
+
+  "magento":{
+    "token": "174ss1k2gm5yn140mm7sgzd6z6s1hqgn",
+    "api_base_url":"http://nginx:8080/index.php/rest"
+  },
+
+  "mail":{
+    "user": "khanhnhatclone@gmail.com",
+    "password": "chauvankhanhnhat1997"
+
+  },
+
+  "rabbitmq": {
+    "exchanges": {
+      "create_order" : {
+        "name": "create.order.from.nodejs.exchange",
+        "routing_create_key": "create.order.rabbit.mq",
+        "routing_result_key": "create.order.result",
+        "durable": true
+      }
+    },
+
+    "queues": {
+      "create_order": "create.order.form.nodejs.queue",
+      "result_create_order": "result.create.order.from.magento"
+    } 
+  }
+}

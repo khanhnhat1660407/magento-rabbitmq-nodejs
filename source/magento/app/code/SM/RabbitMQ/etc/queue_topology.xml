@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/topology.xsd">
+    <exchange name="create.order.from.nodejs.exchange"
+              type="topic"
+              durable="true"
+              autoDelete="true"
+              connection="queue">
+        <binding id="createOrderFormNodeJs"
+                 topic="create.order.rabbit.mq"
+                 destinationType="queue"
+                 destination="create.order.form.nodejs.queue"/> <!-- queue name -->
+    </exchange>
+</config>

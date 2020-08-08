@@ -1,0 +1,108 @@
+version: '3'
+services:
+  php:
+    build: 
+      context: php
+      args:
+        - WITH_XDEBUG=false
+    env_file: .env
+    volumes:
+      - ./source/magento:/var/www/html
+      # - ./auth.json:/var/www/html/var/composer_home/auth.json
+      - ./php/.bash_history:/root/.bash_history
+    networks:
+      - appnet
+    links:
+      - db
+  nginx:
+    build: nginx
+    ports:
+      - 8080:8080
+    volumes:
+      - ./source/magento:/var/www/html
+    networks:
+      - appnet
+    depends_on: 
+      - php
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_rabbitmq_demo:/var/lib/mysql
+      - ./db_data:/home
+    ports:
+      - 33061:3306
+    environment:
+       MYSQL_ROOT_PASSWORD: admin
+       MYSQL_DATABASE: magento_rabbitmq
+       MYSQL_USER: admin
+       MYSQL_PASSWORD: admin
+    networks:
+      - appnet
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8888:80"
+    links:
+      - db 
+    networks:
+      - appnet 
+  rabbitmq:
+    image: 'bitnami/rabbitmq:latest'
+    ports:
+      - 15672:15672
+      - 5672:5672
+    volumes: 
+      - ./rabbitmq/data:/bitnami
+    networks:
+      - appnet
+    environment:
+      - RABBITMQ_USERNAME=rabbit
+      - RABBITMQ_PASSWORD=rabbit
+      - RABBITMQ_DISK_FREE_LIMIT="5GB"
+  nodejs:
+    build: nodejs
+    ports:
+      - 9000:9000
+    volumes:
+      - ./source/nodesite:/home/node/app
+    environment:
+      - PORT=9000
+      - REDIS_URL=redis://:@redis:6379
+      - DATABASE_URL=postgres://admin:admin@postgres:5432/notesite
+      - RABBITMQ_URL=amqp://rabbit:rabbit@rabbitmq
+    command: "npm start"
+    networks:
+      - appnet
+    depends_on: 
+      - redis
+      # - nginx
+      - rabbitmq
+      - postgres
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=notesite
+    networks:
+      - appnet
+      
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379  
+    volumes:
+      - ./redis_data:/data
+    networks:
+      - appnet
+    
+volumes:
+  db_rabbitmq_demo: {}
+  db_postgres: {}
+  
+networks:
+  appnet:
+    driver: "bridge"
